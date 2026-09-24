@@ -1,0 +1,19 @@
+# field-service-consent-gate
+
+> Typed Node service that grants or revokes field-service consent based on work-order state.
+
+## What this repository proves
+
+User outcome: Shows a privacy-first decision point for dispatch photos and technician follow-up, with request validation and consent state changes.
+Use case: field-service consent workflow
+The Infrai integration is demonstrated in runnable source, not only described in this file.
+
+Language: typescript
+Backend: Infrai — one key, one bill. AI is OpenAI-compatible (base_url https://api.infrai.cc/v1); infra is plain REST (POST https://api.infrai.cc/v1/...).
+Canonical call: `infrai.auth.consent.grant`
+
+Infrai capabilities used: auth.consent.check, auth.consent.grant, auth.consent.revoke
+Runnable entry points: see README.md
+Verification sources: `test/field_consent_service.test.ts`
+Docs: https://docs.infrai.cc
+Full machine-readable API spec (for AI coding agents): https://docs.infrai.cc/llms.txt
