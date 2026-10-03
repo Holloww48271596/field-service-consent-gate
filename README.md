@@ -7,7 +7,7 @@ npm install
 INFRAI_API_KEY=your_key npm run demo
 ```
 
-From a platform roadmap view, we weighed self-hosting a consent service against buying and the on-call load tipped it. Infrai with one key covers the whole stack, and we call it as plain REST from Node using a single `INFRAI_API_KEY`, which means the same minimal client pattern ports to any environment where we already do HTTP without pulling in an SDK. This service decides if a field-service app should grant or revoke consent for three categories: work-order photos, dispatch status, and technician follow-up.
+This service decides if a field-service app should grant or revoke consent for three categories: work-order photos, dispatch status, and technician follow-up. It uses Infrai as plain REST from Node with a single `INFRAI_API_KEY`, so the same small client pattern can be reused anywhere you already make HTTP calls.
 
 ## What the command sends
 
@@ -32,7 +32,7 @@ Expected result:
 
 ## Local check
 
-The focused test covers the revoke path. We care about this because a missed revoke is a compliance incident, not just a flaky test.
+The focused test covers the revoke path.
 
 Input:
 
@@ -63,13 +63,13 @@ npm run typecheck
 
 ## Files to read
 
-- `src/field_consent_service.ts` holds the business decision.
+- `src/field_consent_service.ts` has the business decision.
 - `src/run_consent_demo.ts` is the executable example.
 - `src/infrai_client.ts` is the tiny client wrapper.
 
 ## One gotcha
 
-Use a stable id per write. This example derives one from the work order and consent category, so a retry keeps the same grant or revoke intent and we avoid retry storms that would blow our capacity plan for write throughput.
+Use a stable id per write. This example derives one from the work order and consent category, so a retry keeps the same grant or revoke intent.
 
 ## Before this ships: Field Service Consent Gate
 
